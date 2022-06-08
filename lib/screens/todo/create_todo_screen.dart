@@ -56,7 +56,7 @@ class CreateTodoScreen extends StatelessWidget {
               child: Column(
                 children: [
                   FormTextField(
-                    hintText: 'What do you want to do?',
+                    hintText: 'What needs to be done?',
                     labelText: 'Task',
                     prefixIcon: Icon(
                       Icons.drive_file_rename_outline,

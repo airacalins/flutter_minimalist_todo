@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Minimalist App'),
+        title: const Text('Minimalist Todo'),
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pushNamed(RouteManager.createTodoScreen),
@@ -42,27 +42,27 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.all(20.0),
-        child: ListView.separated(
-          separatorBuilder: (context, index) => Container(
-            height: 1,
-            color: Colors.grey,
-          ),
+        child: ListView.builder(
           itemCount: _tasks.length,
-          itemBuilder: ((context, index) => Container(
-                child: ListTile(
-                  title: Text(_tasks[index].name),
-                  subtitle: Text(
-                    DateFormat('MMM dd, yyyy').format(_tasks[index].date),
-                    style: Theme.of(context).textTheme.caption,
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      _tasks[index].isDone ? Icons.check_circle : Icons.circle_outlined,
-                      color: Colors.black87,
-                      size: 20,
+          itemBuilder: ((context, index) => Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  side: BorderSide(color: Theme.of(context).primaryColor),
+                ),
+                elevation: 0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        _tasks[index].isDone ? Icons.check_circle : Icons.circle_outlined,
+                        color: Theme.of(context).primaryColor,
+                        size: 20,
+                      ),
                     ),
-                  ),
+                    Text(_tasks[index].name),
+                  ],
                 ),
               )),
         ),
